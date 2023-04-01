@@ -12,14 +12,14 @@ function submitForm(event){
     if(message.length === 0){
         return
     }
-    msg_html = '<div class="bg-blue-500 text-white p-2 rounded-lg mb-2 self-end"><p class="text-sm">'
+    msg_html = '<div class="bg-red-500 text-white p-2 rounded-lg mb-2 self-end"><p class="text-sm">'
     msg_html += message
     msg_html += '</p></div>'
     document.getElementById("messages").innerHTML += msg_html;
     let chatWindow = document.getElementById("messages-container");
     chatWindow.scrollTop = chatWindow.scrollHeight;
     document.getElementById("message-input").value = "";
-    document.getElementById("button-submit").innerHTML = '<i class="fa fa-circle-o-notch fa-spin"></i> Thinking...';
+    document.getElementById("button-submit").innerHTML = '<i class="fa fa-circle-o-notch fa-spin"></i> Filosofando...';
     document.getElementById("button-submit").disabled = true;
     if (localStorage.getItem('activeDocs') == null) {
         localStorage.setItem('activeDocs', 'default')
@@ -45,7 +45,7 @@ function submitForm(event){
             errorModal.classList.toggle('hidden')
             }
             if(data.answer){
-            msg_html = '<div class="bg-indigo-500 text-white p-2 rounded-lg mb-2 self-start"><code class="text-sm">'
+            msg_html = '<div class="bg-red-200 p-2 rounded-lg mb-2 self-start"><code class="text-sm">'
             data.answer = data.answer.replace(/\n/g, "<br>");
             msg_html += data.answer
             msg_html += '</code></div>'
