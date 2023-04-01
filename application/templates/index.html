@@ -10,58 +10,46 @@
     <link rel="manifest" href="{{ url_for('static', filename='favicon//site.webmanifest') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
+  <body class="flex flex-col items-center justify-center h-screen">
 
-  <body>
-  
-    <header class="bg-white p-2 flex justify-between items-center">
+    <header class="bg-white p-2 flex justify-between items-center w-full">
       <h1 class="text-6xl md:text-4xl text-center">Werle GPT</h1>
     </header>
-
- <!-- Alert Info  -->
- <div class="border flex justify-between 
-  w-auto px-4 py-3 rounded relative 
-  hidden" style="background-color: rgb(197, 51, 51);color: white;" id="error-alert" role="alert">
-  <span class="block sm:inline" id="text-error"></span>
-  <strong class="text-xl align-center alert-del" style="cursor: pointer;" id="close">&times;</strong>
-</div>
-
-
-    <div class="lg:flex ml-2 mr-2">
-      <div class="lg:w-3/4 min-h-screen max-h-screen">
-        <div class="w-full flex flex-col h-5/6">
+  
+    <!-- Alert Info  -->
+    <div class="border flex justify-between w-auto px-4 py-3 rounded relative hidden" style="background-color: rgb(197, 51, 51); color: white;" id="error-alert" role="alert">
+      <span class="block sm:inline" id="text-error"></span>
+      <strong class="text-xl align-center alert-del" style="cursor: pointer;" id="close">&times;</strong>
+    </div>
+  
+    <div class="lg:flex ml-2 mr-2 w-full max-w-screen-xl">
+      <div class="lg:w-3/4 min-h-screen max-h-screen mx-auto">
+        <div class="w-full flex flex-col h-full">
           <div id="messages-container" style="overflow: auto;" class="sm:max-lg:mb-[12rem]">
-
+  
             <div id="messages" class="w-full flex flex-col mt-2" >
               <div class="bg-red-200 p-2 rounded-lg mb-2 self-start">
                 <p class="text-sm">Olá, eu sou o Werle GPT. Eu fui treinado para responder questões ligadas a teoria crítica, justiça social ou outras ideias abordadas nas publicações e apresentações do Prof. Denilson Werle</p>
               </div>
+            </div>
+  
+          </div>
+  
+          <div class="fixed bottom-0 w-full mt-4 mb-2 lg:w-3/4">
+            <form id="message-form" autocomplete="off" class="flex items-stretch w-full">
+              <input autocomplete="off" id="message-input" class="bg-white p-2 rounded-lg ml-2 text-sm w-full" type="text" placeholder="Escreva aqui...">
+              <button id="button-submit" class="bg-red-500 text-white p-2 rounded-lg ml-2 mr-2 text-sm sm:max-lg:p-5" type="submit">Perguntar</button>
+            </form>
           </div>
         </div>
-
-        <div class="fixed bottom-0 w-full mt-4 mb-2 lg:w-3/4">
-        <form id="message-form" autocomplete="off" class="flex items-stretch">
-          <input autocomplete="off" id="message-input" class="bg-white p-2 rounded-lg ml-2 text-sm w-full" type="text" placeholder="Type your message here...">
-          <button id="button-submit" class="bg-red-500 text-white p-2 rounded-lg ml-2 mr-2 text-sm sm:max-lg:p-5" type="submit">Perguntar</button>
-        </form>
-        </div>
-
-        
-
-
+      </div>
+      <div class="hidden">
+        <select id="select-docs" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+          <option selected value="default">Choose documentation</option>
+          <option value="default">Default</option>
+        </select>
+      </div>
     </div>
-        </div>
-        <div class="hidden">
-            <select id="select-docs" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-              <option selected value="default">Choose documentation</option>
-              <option value="default">Default</option>
-            </select>
-        </div>
-    </div>
-
-  <div class="flex items-center justify-center h-full">
-    
-</div>
-
       <script>
           function docsIndex() {
                 // loads latest index from https://raw.githubusercontent.com/arc53/DocsHUB/main/combined.json
